@@ -18,16 +18,29 @@ public class Mover : MonoBehaviour
     private float zSpeed = 0.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
 
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        // Call the method to handle player movement
+        MovePlayer();
+    }
+
+    /// <summary>
+    /// Handles player movement based on input axes.
+    /// </summary>
+
+    private void MovePlayer()
+    {
+        // Calculate speed based on input and move speed
         xSpeed = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
         zSpeed = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+
+        // Apply translation to the player's transform
         transform.Translate(xSpeed, ySpeed, zSpeed);
     }
 }
