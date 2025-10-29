@@ -25,6 +25,7 @@ public class ObjectHit : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             objectRenderer.material.color = Color.black;
+            gameObject.tag = "HitObject";
         }
     }
 }

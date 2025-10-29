@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -13,6 +14,14 @@ public class Scorer : MonoBehaviour
     /// </summary>
     /// <param name="other"></param>
     private void OnCollisionEnter(Collision other)
+    {
+        if (!other.gameObject.CompareTag("HitObject") && !other.gameObject.CompareTag("Bounds"))
+        {
+            RegisterHit();
+        }
+    }
+
+    private void RegisterHit()
     {
         // Increment hit count and log the event
         hits++;

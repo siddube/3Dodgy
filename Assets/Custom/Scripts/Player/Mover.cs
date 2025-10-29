@@ -1,12 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// This class is responsible for moving the player in the scene.
+/// </summary>
 public class Mover : MonoBehaviour
 {
-    /// <summary>
-    /// This class is responsible for moving the player in the scene.
-    /// </summary>
-
-
     // Header attribute for better organization in the Inspector
     // Setting for movement speed
     [Header("Movement Settings")]
