@@ -11,15 +11,29 @@ public class FlyAtPlayer : MonoBehaviour
     // Reference to the player's transform
     [SerializeField] private Transform playerTransform;
 
-    // Settings for flying at the player
+    // Header attribute for better organization in the Inspector
     [Header("Fly At Player Settings")]
+    // Settings for flying at the player
     [SerializeField] private float flySpeed = 1f;
+
 
     /// <summary>
     /// Awake is called when the script instance is being loaded
     /// </summary>
     private void Awake()
     {
+        // Initially disable the MeshRenderer to make the object invisible
+        gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Initializes the flying behavior towards the player.
+    /// </summary>
+    public void Start()
+    {
+        // Enable the MeshRenderer to make the object visible
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+
         // If playerTransform is not assigned, try to find the player in the scene
         if (playerTransform == null)
         {
@@ -44,10 +58,12 @@ public class FlyAtPlayer : MonoBehaviour
     /// </summary>
     private void Update()
     {
+
         // Call the method to move towards the player
         MoveTowardsPlayer();
         // Destroy the object when close to the player
         DestroyWhenClose();
+
     }
 
     /// <summary>
@@ -64,8 +80,11 @@ public class FlyAtPlayer : MonoBehaviour
     /// </summary>
     private void DestroyWhenClose()
     {
-        if (Vector3.Distance(transform.position, playerTransform.position) < 0.5f)
+        // Check the distance to the player and destroy if within threshold
+        // Transform localScale.x is used as the threshold distance
+        if (Vector3.Distance(transform.position, playerTransform.position) < transform.localScale.x)
         {
+            // Destroy this game object
             Destroy(gameObject);
         }
     }

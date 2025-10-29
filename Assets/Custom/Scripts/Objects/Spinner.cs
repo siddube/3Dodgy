@@ -20,6 +20,7 @@ public class Spinner : MonoBehaviour
     /// </summary>
     void Update()
     {
-        transform.Rotate(xAngle, yAngle, zAngle);
+        // Apply rotation to the object's transform
+        transform.Rotate(xAngle * Time.deltaTime * rotateSpeed, yAngle * Time.deltaTime * rotateSpeed, zAngle * Time.deltaTime * rotateSpeed);
     }
 }

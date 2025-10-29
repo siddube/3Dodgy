@@ -6,8 +6,8 @@ using UnityEngine;
 public class Dropper : MonoBehaviour
 {
     // Header attribute for better organization in the Inspector
-    // Setting for time to drop the object
     [Header("Dropper Settings")]
+    // Setting for time to drop the object
     [SerializeField] private int timeToDrop = 3;
 
     /// References to the MeshRenderer and Rigidbody components
@@ -15,7 +15,7 @@ public class Dropper : MonoBehaviour
     private new Rigidbody rigidbody;
 
     /// <summary>
-    /// 
+    /// Awake is called when the script instance is being loaded
     /// </summary>
     private void Awake()
     {
@@ -38,6 +38,7 @@ public class Dropper : MonoBehaviour
     /// </summary>
     void Update()
     {
+        // Check if the current time has reached the time to drop
         if (Time.time >= timeToDrop)
         {
             // Enable the mesh renderer and gravity when the time to drop is reached
