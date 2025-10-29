@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -41,8 +42,31 @@ public class FlyAtPlayer : MonoBehaviour
     /// <summary>
     /// Update is called once per frame
     /// </summary>
-    void Update()
+    private void Update()
     {
+        // Call the method to move towards the player
+        MoveTowardsPlayer();
+        // Destroy the object when close to the player
+        DestroyWhenClose();
+    }
+
+    /// <summary>
+    /// Moves the object towards the player's position.
+    /// </summary>
+    private void MoveTowardsPlayer()
+    {
+        // Move the object towards the player's position
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, flySpeed * Time.deltaTime);
+    }
+
+    /// <summary>
+    /// Destroys the object when it is close enough to the player.
+    /// </summary>
+    private void DestroyWhenClose()
+    {
+        if (Vector3.Distance(transform.position, playerTransform.position) < 0.5f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
